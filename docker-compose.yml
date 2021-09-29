@@ -1,0 +1,34 @@
+version: "3.7"
+
+networks:
+  trino-net:
+    external: true
+
+services:
+  coordinator:
+    image: "trinodb/trino:${TRINO_VERSION}"
+    ports:
+      - "8080:8080"
+    container_name: coordinator
+    networks:
+      - trino-net
+    volumes:
+      - ./coordinator/etc/trino:/etc/trino
+  worker0:
+    image: "trinodb/trino:${TRINO_VERSION}"
+    container_name: worker1
+    ports:
+      - "8081:8081"
+    networks:
+      - trino-net
+    volumes:
+      - ./worker1/etc/trino:/etc/trino
+  worker1:
+    image: "trinodb/trino:${TRINO_VERSION}"
+    container_name: worker2
+    ports:
+      - "8082:8081"
+    networks:
+      - trino-net
+    volumes:
+      - ./worker2/etc/trino:/etc/trino
