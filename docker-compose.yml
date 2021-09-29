@@ -2,7 +2,7 @@ version: "3.7"
 
 networks:
   trino-net:
-    external: true
+    external: false
 
 services:
   coordinator:
